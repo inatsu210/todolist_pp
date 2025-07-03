@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Se connecter</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .login-form {
+            display: flex;
+            flex-direction: column; /* Afficher les éléments verticalement */
+            gap: 10px; /* Ajouter un espace entre les éléments */
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .login-form label {
+            display: block; /* Le label prend toute la largeur */
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%; /* Les champs prennent toute la largeur du conteneur */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+        }
+
+        .login-form button[type="submit"] {
+            background-color: #28a745; /* Vert pour la connexion */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .login-form button[type="submit"]:hover {
+            background-color: #1e7e34;
+        }
+
+        .login-links {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .login-links a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .login-links a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Se connecter</h1>
+        <div class="login-form">
+            {% if form.errors %}
+                <p class="error-message">Votre nom d'utilisateur et votre mot de passe ne correspondent pas. Veuillez réessayer.</p>
+            {% endif %}
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <label for="id_username">Nom d'utilisateur:</label>
+                <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" required="" id="id_username">
+                <label for="id_password">Mot de passe:</label>
+                <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
+                <button type="submit">Se connecter</button>
+            </form>
+        </div>
+        <div class="login-links">
+            <a href="{% url 'password_reset' %}">Mot de passe oublié ?</a>
+            <span>|</span>
+            <a href="{% url 'register' %}">S'inscrire</a>
+        </div>
+    </div>
+</body>
+</html>

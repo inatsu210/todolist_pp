@@ -1,0 +1,113 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    background-color: #f8f8f8;
+    margin: 50px;
+    padding: 50px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #555;
+    margin-top: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+input[type="text"],
+textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex-grow: 1;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button[type="submit"] {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #4cae4c;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.task-title {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.completed {
+    color: #888;
+    text-decoration: line-through;
+}
+
+.actions a,
+.actions button {
+    margin-left: 10px;
+    text-decoration: none;
+    color: blue;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.actions button {
+    color: red;
+}
+
+.actions a:hover,
+.actions button:hover {
+    text-decoration: underline;
+}
+
+.task-description {
+    margin-left: 30px;
+    font-size: 0.9em;
+    color: #777;
+}

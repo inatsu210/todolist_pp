@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>S'inscrire</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .register-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .register-form input[type="text"],
+        .register-form input[type="email"],
+        .register-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .register-form button[type="submit"] {
+            background-color: #007bff; /* Bleu pour l'inscription */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .register-form button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .register-links {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .register-links a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .register-links a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>S'inscrire</h1>
+        <div class="register-form">
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">S'inscrire</button>
+            </form>
+        </div>
+        <div class="register-links">
+            <p>Déjà un compte ? <a href="{% url 'login' %}">Se connecter</a></p>
+        </div>
+    </div>
+</body>
+</html>

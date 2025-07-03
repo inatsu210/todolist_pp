@@ -1,0 +1,14 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bienvenue</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bienvenue sur Ma Todo List</h1>
+        <p>Veuillez vous <a href="{% url 'login' %}">connecter</a> ou vous <a href="{% url 'register' %}">inscrire</a> pour utiliser l'application.</p>
+    </div>
+</body>
+</html>

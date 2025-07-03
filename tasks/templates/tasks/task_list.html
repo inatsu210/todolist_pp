@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ma Todo List</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% if user.is_authenticated %}
+        <p style="text-align: right;"><a href="{% url 'logout' %}">Se déconnecter</a></p>
+            <h1>Ma Todo List</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.title }}
+                {{ form.description }}
+                <button type="submit">Ajouter</button>
+            </form>
+            <h2>Tâches</h2>
+            <ul>
+                {% for task in tasks %}
+                    <li>
+                        <div style="display: flex; align-items: center; flex-grow: 1;">
+                            <form method="post" action="{% url 'toggle_task' task.id %}">
+                                {% csrf_token %}
+                                <input type="checkbox" name="completed" {% if task.completed %}checked{% endif %} onchange="this.form.submit()">
+                            </form>
+                            <div class="task-content">
+                                <span class="task-title {% if task.completed %}completed{% endif %}">{{ task.title }}</span>
+                                {% if task.description %}
+                                    <p class="task-description">{{ task.description }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 5px;">
+                            <a href="{% url 'edit_task' task.id %}" class="edit">Modifier</a>
+                            <form method="post" action="{% url 'delete_task' task.id %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="delete">Supprimer</button>
+                            </form>
+                            <form method="post" action="{% url 'toggle_task' task.id %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="finished">{% if task.completed %}Unfinish{% else %}Finished{% endif %}</button>
+                            </form>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li>Aucune tâche pour le moment.</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h1>Bienvenue sur Ma Todo List</h1>
+            <p>Veuillez vous <a href="{% url 'login' %}">connecter</a> ou vous <a href="{% url 'register' %}">inscrire</a> pour utiliser l'application.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
